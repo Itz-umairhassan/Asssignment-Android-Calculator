@@ -11,7 +11,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
 
-    Button add_btn,sub_btn,mult_btn;
+    Button add_btn,sub_btn,mult_btn,div_btn,fact_btn,gcd_btn;
     EditText field1,field2;
 
     protected String calculation(String value1,String value2,int operator){
@@ -37,7 +37,12 @@ public class MainActivity extends AppCompatActivity {
             return ""+(a-b);
         if(operator==3)
             return ""+(a*b);
-        return "no way";
+        if(operator==4){
+            if(b==0)
+                return "Denominator can not be zero";
+            return ""+((double) a/ (double)b);
+        }
+        return "no way bro";
     }
 
     @Override
@@ -48,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         add_btn=findViewById(R.id.button4);
         sub_btn=findViewById(R.id.button5);
         mult_btn=findViewById(R.id.button6);
+        div_btn=findViewById(R.id.button7);
 
         field1=findViewById(R.id.editTextTextPersonName2);
         field2=findViewById(R.id.editTextTextPersonName);
@@ -78,6 +84,16 @@ public class MainActivity extends AppCompatActivity {
                 String value2=field2.getText().toString();
 
                 Toast.makeText(MainActivity.this, "Multiplication : "+calculation(value1,value2,3), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        div_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String value1=field1.getText().toString();
+                String value2=field2.getText().toString();
+
+                Toast.makeText(MainActivity.this, "Division : "+calculation(value1,value2,4), Toast.LENGTH_SHORT).show();
             }
         });
     }
