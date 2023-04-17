@@ -33,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
         if(operator==1)
             return ""+(a+b);
+        if(operator==2)
+            return ""+(a-b);
+        if(operator==3)
+            return ""+(a*b);
         return "no way";
     }
 
@@ -42,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         add_btn=findViewById(R.id.button4);
-
+        sub_btn=findViewById(R.id.button5);
+        mult_btn=findViewById(R.id.button6);
 
         field1=findViewById(R.id.editTextTextPersonName2);
         field2=findViewById(R.id.editTextTextPersonName);
@@ -52,7 +57,27 @@ public class MainActivity extends AppCompatActivity {
                 String value1=field1.getText().toString();
                 String value2=field2.getText().toString();
 
-                Toast.makeText(MainActivity.this, calculation(value1,value2,1), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Addition : "+ calculation(value1,value2,1), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        sub_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String value1=field1.getText().toString();
+                String value2=field2.getText().toString();
+
+                Toast.makeText(MainActivity.this, "Substraction : "+calculation(value1,value2,2), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mult_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String value1=field1.getText().toString();
+                String value2=field2.getText().toString();
+
+                Toast.makeText(MainActivity.this, "Multiplication : "+calculation(value1,value2,3), Toast.LENGTH_SHORT).show();
             }
         });
     }
