@@ -14,19 +14,38 @@ public class MainActivity extends AppCompatActivity {
     Button add_btn,sub_btn,mult_btn,div_btn,fact_btn,gcd_btn;
     EditText field1,field2;
 
+    protected long find_factorial(long value){
+        long answer=1;
+
+        // 1*2*3*4*5*6*7*8
+        for(long i=2;i<=value;i++){
+            answer*=i;
+        }
+
+        return  answer;
+    }
     protected String calculation(String value1,String value2,int operator){
      // take both values and first of all check that they are proper numbers...
-        long a,b;
+        long a=0,b=0;
         try{
             a=Long.parseLong(value1);
+            if(operator==5){
+                return "Factorial for first field is "+find_factorial(a);
+            }
         }catch (NumberFormatException ex){
-            return "Field 1 should contain a number";
+            // in case we want to find factorial then don't return instead check for other value..
+            if(operator!=5) {
+                return "Incorrect Input! Field 1 should contain a number";
+            }
         }
 
         try{
             b=Long.parseLong(value2);
+            if(operator==5){
+                return "Factorial for second value is "+find_factorial(b);
+            }
         }catch(NumberFormatException ex){
-            return "Field 2 should contain a number";
+            return "Incorrect Input! Field 2 should contain a number";
         }
 
         // now apply the operation...
@@ -45,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
         return "no way bro";
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         sub_btn=findViewById(R.id.button5);
         mult_btn=findViewById(R.id.button6);
         div_btn=findViewById(R.id.button7);
+        fact_btn=findViewById(R.id.button8);
+        gcd_btn=findViewById(R.id.button9);
 
         field1=findViewById(R.id.editTextTextPersonName2);
         field2=findViewById(R.id.editTextTextPersonName);
@@ -94,6 +117,16 @@ public class MainActivity extends AppCompatActivity {
                 String value2=field2.getText().toString();
 
                 Toast.makeText(MainActivity.this, "Division : "+calculation(value1,value2,4), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        fact_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String value1=field1.getText().toString();
+                String value2=field2.getText().toString();
+
+                Toast.makeText(MainActivity.this, "Division : "+calculation(value1,value2,5), Toast.LENGTH_SHORT).show();
             }
         });
     }
