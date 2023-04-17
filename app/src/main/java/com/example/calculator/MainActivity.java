@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button add_btn,sub_btn,mult_btn,div_btn,fact_btn,gcd_btn;
     EditText field1,field2;
+    TextView result_view;
 
     protected long find_factorial(long value){
         long answer=1;
@@ -86,25 +88,29 @@ public class MainActivity extends AppCompatActivity {
 
         field1=findViewById(R.id.editTextTextPersonName2);
         field2=findViewById(R.id.editTextTextPersonName);
+
+        result_view=findViewById(R.id.textView2);
+
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String value1=field1.getText().toString();
                 String value2=field2.getText().toString();
+                String result=calculation(value1,value2,1);
+                result_view.setText("Addition : "+result);
 
-                Toast.makeText(MainActivity.this,"Addition : "+ calculation(value1,value2,1), Toast.LENGTH_SHORT).show();
             }
         });
 
-        sub_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String value1=field1.getText().toString();
-                String value2=field2.getText().toString();
+       sub_btn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               String value1=field1.getText().toString();
+               String value2=field2.getText().toString();
 
-                Toast.makeText(MainActivity.this, "Substraction : "+calculation(value1,value2,2), Toast.LENGTH_SHORT).show();
-            }
-        });
+               result_view.setText( "Substraction : "+calculation(value1,value2,2));
+           }
+       });
 
         mult_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 String value1=field1.getText().toString();
                 String value2=field2.getText().toString();
 
-                Toast.makeText(MainActivity.this, "Multiplication : "+calculation(value1,value2,3), Toast.LENGTH_SHORT).show();
+                result_view.setText( "Multiplication : "+calculation(value1,value2,3));
             }
         });
 
@@ -121,8 +127,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String value1=field1.getText().toString();
                 String value2=field2.getText().toString();
-
-                Toast.makeText(MainActivity.this, "Division : "+calculation(value1,value2,4), Toast.LENGTH_SHORT).show();
+                result_view.setText("Division : "+calculation(value1,value2,4));
             }
         });
 
@@ -131,8 +136,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String value1=field1.getText().toString();
                 String value2=field2.getText().toString();
-
-                Toast.makeText(MainActivity.this, calculation(value1,value2,5), Toast.LENGTH_SHORT).show();
+                result_view.setText( calculation(value1,value2,5));
             }
         });
 
@@ -142,7 +146,8 @@ public class MainActivity extends AppCompatActivity {
                 String value1=field1.getText().toString();
                 String value2=field2.getText().toString();
 
-                Toast.makeText(MainActivity.this, "GCD : "+calculation(value1,value2,6), Toast.LENGTH_SHORT).show();
+                result_view.setText("GCD : "+calculation(value1,value2,6));
+
             }
         });
     }
