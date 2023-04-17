@@ -24,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
         return  answer;
     }
+
+    protected long find_gcd(long a,long b){
+        return b==0?a:find_gcd(b,a % b);
+    }
+
     protected String calculation(String value1,String value2,int operator){
      // take both values and first of all check that they are proper numbers...
         long a=0,b=0;
@@ -61,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
                 return "Denominator can not be zero";
             return ""+((double) a/ (double)b);
         }
-        return "no way bro";
+
+       return ""+find_gcd(a,b);
     }
 
 
@@ -126,7 +132,17 @@ public class MainActivity extends AppCompatActivity {
                 String value1=field1.getText().toString();
                 String value2=field2.getText().toString();
 
-                Toast.makeText(MainActivity.this, "Division : "+calculation(value1,value2,5), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, calculation(value1,value2,5), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        gcd_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String value1=field1.getText().toString();
+                String value2=field2.getText().toString();
+
+                Toast.makeText(MainActivity.this, "GCD : "+calculation(value1,value2,6), Toast.LENGTH_SHORT).show();
             }
         });
     }
